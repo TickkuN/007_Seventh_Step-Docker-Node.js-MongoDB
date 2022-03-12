@@ -4,7 +4,8 @@
   "description": "This is a blog app.",
   "main": "server.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "start": "node index.js",
+    "dev": "nodemon -L index.js"
   },
   "author": "TickkuN",
   "license": "ISC",
