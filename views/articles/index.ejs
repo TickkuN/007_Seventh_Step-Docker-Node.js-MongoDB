@@ -1,0 +1,34 @@
+<%- include("./../partials/header"); %>
+
+<h1 class="mb-1">Hello</h1>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<% articles.forEach(article => { %>
+<div class="card mt-4">
+    <div class="card-body">
+        <div class="mb-2">
+            <h1 class="card-title d-inline me-2"><%= article.title %></h1>
+            <div class="card-text d-inline"><%= article.description %></div>
+        </div>
+        <div class="card-subtitle text-muted mb-2">
+            <%= article.createdAt.toLocaleDateString() %>
+        </div>
+        <div><%- article.sanitizedHtml %></div>
+        <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-line">
+        <a href="articles/<%= article.slug %>" class="btn btn-secondary"><i class="fa-brands fa-readme"></i></a>
+        <a href="articles/edit/<%= article.id %>" class="btn btn-secondary"><i class="fa-solid fa-pen"></i></a>
+            <button type="submit" class="btn btn-secondary"><i class="fa-solid fa-trash-can"></i></button>
+        </form>
+    </div>
+</div>
+<% }) %>
+
+<div class="plus-button">
+    <a href="/articles/new"> <i class="fa-solid fa-circle-plus fa-3x"></i> </a>
+</div>
+
+<%- include("./../partials/footer") %>
