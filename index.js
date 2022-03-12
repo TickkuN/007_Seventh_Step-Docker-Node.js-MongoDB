@@ -13,13 +13,11 @@ const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_
 
 const connectWithRetry = () => {
     mongoose
-        .connect( mongoURL, {
-            useNewUrlParser: true
-        })
+        .connect(mongoURL)
         .then(() => console.log("succesfully connected to DB"))
         .catch((e) => {
             console.log(e)
-            setTimeout(connectWithRetry, 100)
+            setTimeout(connectWithRetry, 1000)
         });
 };
 
