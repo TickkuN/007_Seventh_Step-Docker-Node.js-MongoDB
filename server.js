@@ -32,4 +32,6 @@ app.get("/about", function(req, res){
 
 app.use('/articles', articleRouter)
 
-app.listen(5000)
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log(`listening on port ${port}`));
