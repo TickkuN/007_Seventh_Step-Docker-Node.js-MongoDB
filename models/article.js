@@ -5,6 +5,8 @@ const createDomPurify = require('dompurify')
 const { JSDOM } = require('jsdom')
 const window = new JSDOM('').window
 const dompurify = createDomPurify(window)
+const { v4: uuidv4 } = require('uuid')
+
 
 const articleSchema = new mongoose.Schema({
     title: {
@@ -35,7 +37,7 @@ const articleSchema = new mongoose.Schema({
 
 articleSchema.pre('validate', function(next){
     if (this.title) {
-        this.slug = slugify(Math.random().toString(), { lower: true, strict: true})
+        this.slug = slugify(uuidv4(), { lower: true, strict: true})
     }
 
     if (this.markdown) {
